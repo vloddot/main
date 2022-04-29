@@ -4,7 +4,7 @@ import re
 text = input('Text: ').strip()
 
 # Replace each space with 3 dots
-text = re.sub(r' ', '...', text)
+text = re.sub(r'\s', '...', text)
 
 # Print the text
 print(text)
