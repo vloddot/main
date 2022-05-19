@@ -1,10 +1,14 @@
+from re import match
+
+
 def main():
     plate = input('Plate: ')
     print('Valid') if is_valid(plate) else print('Invalid')
 
 
 def is_valid(plate):
-    
+    # scratch this mess: return match(r'([A-Za-z]{2}[1-9][0-9]|[A-Za-z]{2,6}){2,6}', plate)
+
     if len(plate) > 6 or len(plate) < 2:
         return False
 
@@ -14,21 +18,11 @@ def is_valid(plate):
     if not (plate[0].isalpha() and plate[1].isalpha()):
         return False
 
-    already_has_digit = False
-    is_digit = False
-    for char in plate:
+    if not match(r'^[0-9]*[^0-9]*[0-9]*$', plate):
+        return False
 
-        if char.isdigit() and not already_has_digit:
-            is_digit = True
-            already_has_digit = True
-
-        if is_digit and char == '0':
-            return False
-
-        if is_digit and char.isalpha():
-            return False
-        
-        is_digit = False
+    if match(r'^\w+0[0-9]$', plate):
+        return False
 
     return True
 
