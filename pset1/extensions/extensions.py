@@ -2,23 +2,21 @@ from mimetypes import types_map, common_types
 
 filename = input('Filename: ').strip()
 
-print(filename.split('.'))
-try:
-    index = filename.index('.')
-    
-except ValueError:
-    index = 0
+filename = filename.split('.')
 
-try:
-    mimetype = types_map[filename[index:].lower()]
-    
-except KeyError:
+mimetype = 'application/octet-stream'
+for extension in filename[len(filename)-1:0:-1]:
+
     try:
-        
-        mimetype = common_types[filename[index:].lower()]
+        mimetype = types_map[f'.{extension.lower()}']
+        break
 
     except KeyError:
-        mimetype = 'application/octet-stream'
+        try:
+            mimetype = common_types[f'.{extension.lower()}']
+        except KeyError:
+            mimetype = 'application/octet-stream'
+            break
 
 
 print(mimetype)
