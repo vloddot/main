@@ -38,3 +38,7 @@ def test_zero_at_start():
 def test_punctuation():
     assert not is_valid('PI3.14')
     assert not is_valid('.,URW')
+
+def test_numbers_only():
+    assert not is_valid('42')
+    assert not is_valid('24')
