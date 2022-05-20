@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./pset5/fuel"
+    ]
+}
