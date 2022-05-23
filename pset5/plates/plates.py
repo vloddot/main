@@ -21,7 +21,7 @@ def is_valid(plate: str) -> bool:
     if not match(r'^[0-9]*[^0-9]*[0-9]*$', plate):
         return False
 
-    if match(r'[^0]', plate):
+    if match(r'^\w*0', plate):
         return False
 
     return True
